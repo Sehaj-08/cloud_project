@@ -1,0 +1,40 @@
+# Git history and repository metadata
+.git/
+.gitignore
+
+# Python virtual environments
+.venv/
+venv/
+env/
+
+# Python cache files
+__pycache__/
+*.py[cod]
+
+# Test files and coverage reports
+tests/
+.pytest_cache/
+.coverage
+htmlcov/
+
+# Local databases and application data
+data/
+*.db
+*.sqlite
+*.sqlite3
+
+# Environment files and secrets
+.env
+.env.*
+!.env.example
+
+# Editor and operating system files
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+
+# Project documentation and infrastructure configuration
+docs/
+terraform/
+nginx/

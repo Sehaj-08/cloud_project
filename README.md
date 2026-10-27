@@ -71,6 +71,93 @@ See docs/project-scope.md for the project objectives, API contract, technology c
 
 ## Current status
 
-Phase 0: Project scope and API contract.
+Phase 1: Local Application Development and Testing
 
-Application implementation, cloud infrastructure, CI/CD, monitoring, and recovery will be completed in subsequent phases.
+Application Architecture
+
+The Task Management API is built using Python and FastAPI. SQLAlchemy handles database operations, Pydantic validates incoming requests and defines response structures, and SQLite stores task data persistently.
+
+The application is organized into the following components:
+
+app/main.py — Initializes the FastAPI application and registers routes.
+
+app/database.py — Configures the database connection and session management.
+
+app/models.py — Defines the database model for tasks.
+
+app/schemas.py — Defines request validation and response schemas.
+
+app/crud.py — Implements task creation, retrieval, and update operations.
+
+app/routes/health.py — Implements health and version endpoints.
+
+app/routes/tasks.py — Implements task management endpoints.
+
+tests/ — Contains automated tests for API behavior and validation.
+
+Database and Persistence
+
+The default database URL is:
+
+sqlite:///./data/tasks.db
+
+The database file is created under the data directory relative to the application's working directory, unless the DATABASE_URL environment variable specifies another location.
+
+The application initializes the required database tables during startup.
+
+To verify persistence:
+
+Create a task through /docs.
+
+Stop the application.
+
+Start the application again.
+
+Call GET /tasks.
+
+Verify that the previously created task still exists.
+
+The SQLite database file is local application data and must not be committed to Git.
+
+Automated Testing
+
+Run the test suite from the repository root:
+
+python -m pytest -v
+
+The tests cover:
+
+Health endpoint behavior.
+
+Application version handling.
+
+Task creation and retrieval.
+
+Invalid and missing input.
+
+Partial task updates.
+
+Updates for nonexistent tasks.
+
+Database isolation during task tests.
+
+The task tests use a separate in-memory SQLite database to avoid modifying the normal local database.
+
+Phase 1 Completion Criteria
+
+Phase 1 is complete when:
+
+The application starts using the documented commands.
+
+All required endpoints behave as expected.
+
+Invalid requests return appropriate HTTP errors.
+
+Automated tests pass.
+
+Task data survives application restarts.
+
+No passwords, tokens, database files, or other sensitive data are committed to Git.
+
+Another person can follow the README to set up and verify the application locally.
+
