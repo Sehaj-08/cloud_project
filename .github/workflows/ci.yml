@@ -29,3 +29,8 @@ jobs:
 
       - name: Run tests
         run: python -m pytest -v
+
+      - name: Build Docker image
+      # ${{ github.sha }} is a unique, 40-character fingerprint that GitHub assigns to your exact commit.
+      #  ensure that every single build gets its own unique version name.
+        run: docker build -t task-api:${{ github.sha }} .   
