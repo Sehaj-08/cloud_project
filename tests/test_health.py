@@ -13,7 +13,7 @@ def test_health_returns_ok():
     assert response.json() == {"status": "ok"}
 
 # Assuming this router is included in your main app instance
-def test_health_check_v2(client: TestClient):
+def test_health_check_v2():
     response = client.get("/health2")
     assert response.status_code == status.HTTP_200_OK
     
