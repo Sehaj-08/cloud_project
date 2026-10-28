@@ -34,3 +34,13 @@ jobs:
       # ${{ github.sha }} is a unique, 40-character fingerprint that GitHub assigns to your exact commit.
       #  ensure that every single build gets its own unique version name.
         run: docker build -t task-api:${{ github.sha }} .   
+      
+      - name: Scan Docker image with Trivy
+        uses: aquasecurity/trivy-action@ed142fd0673e97e23eac54620cfb913e5ce36c25
+        with:
+          image-ref: task-api:${{ github.sha }}
+          format: table
+          vuln-type: os,library
+          severity: HIGH,CRITICAL
+          ignore-unfixed: true
+          exit-code: '1'
