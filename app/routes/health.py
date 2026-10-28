@@ -18,3 +18,12 @@ def get_version() -> dict[str, str]:
     version = os.getenv("APP_VERSION", "0.1.0")
 
     return {"version": version}
+
+@router.get("/health2")
+def health_check_v2() -> dict[str, str]:
+    """Dynamic check to verify that automated GitHub Actions deployments are live."""
+    return {
+        "status": "active",
+        "deployment": "github-actions-ecr-live",
+        "environment": os.getenv("APP_ENV", "production")
+    }
